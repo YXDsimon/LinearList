@@ -79,4 +79,8 @@ public:
 
 int main()
 {
+    char a[] = "I love";
+    char b[] = "Data Structure";
+    cout<<sizeof(a)/sizeof(a[0]);
+    // ArrayList array1(a, ;
 }
