@@ -82,10 +82,10 @@ int main()
     cin >> index;
     cout << "Enter value that you want to insert:" << endl;
     cin >> val;
-    // arraylist.insert_list(index, val);
-    // arraylist.print();
-    // cout << "type in index where you want to delete:" << endl;
-    // cin >> index;
-    // arraylist.delete_list(index);
-    // arraylist.print();
+    arraylist.insert_list(index, val);
+    arraylist.print();
+    cout << "type in index where you want to delete:" << endl;
+    cin >> index;
+    arraylist.delete_list(index);
+    arraylist.print();
 }
