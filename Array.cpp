@@ -65,27 +65,27 @@ public:
 
 int main()
 {
-    int num[100]; //int型数组用于存储输入变量
-    int i = 0;
-    cout << "Please enter the list you want, elements separated by space:" << endl;
-    while (cin >> num[i])
-    {
-        if (cin.get() == '\n')
-            break;
-        i++;
-    }
-    ArrayList arraylist(num, i + 1);
-    arraylist.print();
-    int index;
-    int val;
-    cout << "Enter index where you want to insert:" << endl;
-    cin >> index;
-    cout << "Enter value that you want to insert:" << endl;
-    cin >> val;
-    arraylist.insert_list(index, val);
-    arraylist.print();
-    cout << "type in index where you want to delete:" << endl;
-    cin >> index;
-    arraylist.delete_list(index);
-    arraylist.print();
+    // int num[100]; //int型数组用于存储输入变量
+    // int i = 0;
+    // cout << "Please enter the list you want, elements separated by space:" << endl;
+    // while (cin >> num[i])
+    // {
+    //     if (cin.get() == '\n')
+    //         break;
+    //     i++;
+    // }
+    // ArrayList arraylist(num, i + 1);
+    // arraylist.print();
+    // int index;
+    // int val;
+    // cout << "Enter index where you want to insert:" << endl;
+    // cin >> index;
+    // cout << "Enter value that you want to insert:" << endl;
+    // cin >> val;
+    // arraylist.insert_list(index, val);
+    // arraylist.print();
+    // cout << "type in index where you want to delete:" << endl;
+    // cin >> index;
+    // arraylist.delete_list(index);
+    // arraylist.print();
 }
