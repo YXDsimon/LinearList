@@ -16,7 +16,7 @@ public:
     LinkNode(int val, LinkNode *Next)
     {
         value = val;
-        next = Next;
+        next = Next;//
     }
 };
 
