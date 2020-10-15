@@ -101,27 +101,5 @@ public:
 };
 int main()
 {
-    int num[100]; //int型数组用于存储输入变量
-    int i = 0;
-    cout << "Please enter the list you want, elements separated by space:" << endl;
-    while (cin >> num[i])
-    {
-        if (cin.get() == '\n')
-            break;
-        i++;
-    }
-    LinkedList linkedlist(num, i + 1);
-    linkedlist.print();
-    int index;
-    int val;
-    cout << "Enter index where you want to insert:" << endl;
-    cin >> index;
-    cout << "Enter value that you want to insert:" << endl;
-    cin >> val;
-    linkedlist.insert_list(index, val);
-    linkedlist.print();
-    cout << "type in index where you want to delete:" << endl;
-    cin >> index;
-    linkedlist.delete_list(index);
-    linkedlist.print();
+    
 }
