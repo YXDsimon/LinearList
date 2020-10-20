@@ -9,7 +9,7 @@ private:
     int len;
 
 public:
-    ArrayList(int *input, int LenOfInput)
+    ArrayList(string input, int LenOfInput)
     {
         for (int i = 0; i < LenOfInput; i++)
         {
@@ -17,7 +17,7 @@ public:
         }
         len = LenOfInput;
     }
-    bool insert_list(int index, int val)
+    bool insert_list(int index, string val)
     {
         if (index < 0 || index > len)
         {
@@ -63,7 +63,7 @@ public:
     }
     ArrayList operator+(const ArrayList &b)
     {
-        int *list = new int[100];
+        string list;
         for (int i = 0; i < this->len; i++)
         {
             list[i] = this->List[i];
@@ -79,8 +79,8 @@ public:
 
 int main()
 {
-    char a[] = "I love";
-    char b[] = "Data Structure";
+    string a = "I love";
+    string b = "Data Structure";
     cout<<sizeof(a)/sizeof(a[0]);
-    // ArrayList array1(a, ;
+    ArrayList array1(a,sizeof(a)/sizeof(a[0])) ;
 }
