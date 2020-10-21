@@ -102,34 +102,68 @@ public:
         Len++;
         return 1;
     }
-    LinkedList operator+(LinkedList b)
+    LinkedList *operator+(LinkedList b)
     {
         LinkedList *newl = new LinkedList();
-        struct LNode *p = new struct LNode[5];
         this->curr = this->head;
         b.curr = b.head;
         while (1)
         {
-            if (this->curr->next = NULL)
+            if (this->curr->next == NULL)
             {
-                if (b.curr->next = NULL)
+                if (b.curr->next == NULL)
                 {
                     break;
                 }
                 while (b.curr->next != NULL)
                 {
                     newl->insert_list(newl->Len, b.curr->next);
+                    b.curr = b.curr->next;
                 }
+                break;
             }
-            if (b.curr->next = NULL)
+            if (b.curr->next == NULL)
             {
                 while (this->curr->next != NULL)
                 {
                     newl->insert_list(newl->Len, this->curr->next);
+                    this->curr = this->curr->next;
                 }
+                break;
             }
-            
+            if (this->curr->next->expn == b.curr->next->expn)
+            {
+                if (this->curr->next->coef + b.curr->next->coef != 0)
+                {
+                    struct LNode tl;
+                    tl.c = this->curr->next->coef + b.curr->next->coef;
+                    tl.e = this->curr->next->expn;
+                    newl->insert_list(newl->Len, tl);
+                }
+                this->curr = this->curr->next;
+                b.curr = b.curr->next;
+                continue;
+            }
+            if (this->curr->next->expn < b.curr->next->expn)
+            {
+                struct LNode tl;
+                tl.c = b.curr->next->coef;
+                tl.e = b.curr->next->expn;
+                newl->insert_list(newl->Len, tl);
+                b.curr = b.curr->next;
+                continue;
+            }
+            if (this->curr->next->expn > b.curr->next->expn)
+            {
+                struct LNode tl;
+                tl.c = this->curr->next->coef;
+                tl.e = this->curr->next->expn;
+                newl->insert_list(newl->Len, tl);
+                this->curr = this->curr->next;
+                continue;
+            }
         }
+        return newl;
     }
     void print()
     {
@@ -138,8 +172,9 @@ public:
         while (curr->next != NULL)
         {
             curr = curr->next;
-            cout << curr->coef << ' ' << curr->expn;
-            cout << ' ';
+            cout << curr->coef << "*X^" << curr->expn;
+            if (curr->next != NULL)
+                cout << " + ";
         }
         cout << endl;
         curr = head;
@@ -151,21 +186,33 @@ int main()
     a1.c = 3;
     a1.e = 14;
     struct LNode a2;
-    a1.c = 3;
-    a1.e = 10;
+    a2.c = 3;
+    a2.e = 10;
     struct LNode a3;
-    a1.c = 5;
-    a1.e = 8;
+    a3.c = 5;
+    a3.e = 8;
     struct LNode a4;
-    a1.c = 0;
-    a1.e = 2;
+    a4.c = 2;
+    a4.e = 0;
+    struct LNode *a = new struct LNode[5];
+    a[0] = a1;
+    a[1] = a2;
+    a[2] = a3;
+    a[3] = a4;
+    LinkedList La(a, 4);
     struct LNode b1;
-    a1.c = 8;
-    a1.e = 14;
+    b1.c = 8;
+    b1.e = 14;
     struct LNode b2;
-    a1.c = -3;
-    a1.e = 10;
+    b2.c = -3;
+    b2.e = 10;
     struct LNode b3;
-    a1.c = 10;
-    a1.e = 6;
+    b3.c = 10;
+    b3.e = 6;
+    struct LNode *b = new struct LNode[5];
+    b[0] = b1;
+    b[1] = b2;
+    b[2] = b3;
+    LinkedList Lb(b, 3);
+    (La + Lb)->print(); //重载+运算符来实现两个线性表的相加
 }
