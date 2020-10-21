@@ -1,21 +1,35 @@
 #include <iostream>
 #include <string>
 using namespace std;
+struct LNode
+{
+    float c;
+    int e;
+};
 
 class LinkNode
 {
 public:
-    int value;
+    float coef;
+    int expn;
     LinkNode *next;
     LinkNode() {}
-    LinkNode(int val)
+    LinkNode(float c, int e)
     {
-        value = val;
+        coef = c;
+        expn = e;
         next = NULL;
     }
-    LinkNode(int val, LinkNode *Next)
+    LinkNode(struct LNode l)
     {
-        value = val;
+        coef = l.c;
+        expn = l.e;
+        next = NULL;
+    }
+    LinkNode(float c, int e, LinkNode *Next)
+    {
+        coef = c;
+        expn = e;
         next = Next;
     }
 };
@@ -29,7 +43,7 @@ private:
     int Len;
 
 public:
-    LinkedList(int *list, int len)
+    LinkedList(struct LNode *list, int len)
     {
         LinkNode *HeadNode = new LinkNode();
         head = HeadNode;
@@ -43,7 +57,15 @@ public:
         }
         Len = len;
     }
-    bool insert_list(int index, int val)
+    LinkedList()
+    {
+        LinkNode *HeadNode = new LinkNode();
+        head = HeadNode;
+        curr = HeadNode;
+        tail = HeadNode;
+        Len = 0;
+    }
+    bool insert_list(int index, struct LNode l)
     {
         curr = head;
         if (index < 0 || index > Len)
@@ -55,14 +77,14 @@ public:
         {
             curr = curr->next;
         }
-        LinkNode *newnode = new LinkNode(val);
+        LinkNode *newnode = new LinkNode(l);
         newnode->next = curr->next;
         curr->next = newnode;
         curr = head;
         Len++;
         return 1;
     }
-    int delete_list(int index)
+    bool insert_list(int index, LinkNode *n)
     {
         curr = head;
         if (index < 0 || index > Len)
@@ -74,16 +96,40 @@ public:
         {
             curr = curr->next;
         }
-        if (index == Len - 1)
+        n->next = curr->next;
+        curr->next = n;
+        curr = head;
+        Len++;
+        return 1;
+    }
+    LinkedList operator+(LinkedList b)
+    {
+        LinkedList *newl = new LinkedList();
+        struct LNode *p = new struct LNode[5];
+        this->curr = this->head;
+        b.curr = b.head;
+        while (1)
         {
-            int deleted = curr->next->value;
-            curr->next = NULL;
-            Len--;
-            return deleted;
+            if (this->curr->next = NULL)
+            {
+                if (b.curr->next = NULL)
+                {
+                    break;
+                }
+                while (b.curr->next != NULL)
+                {
+                    newl->insert_list(newl->Len, b.curr->next);
+                }
+            }
+            if (b.curr->next = NULL)
+            {
+                while (this->curr->next != NULL)
+                {
+                    newl->insert_list(newl->Len, this->curr->next);
+                }
+            }
+            
         }
-        LinkNode *Temp = curr->next->next;
-        curr->next = Temp;
-        return Temp->value;
     }
     void print()
     {
@@ -92,7 +138,7 @@ public:
         while (curr->next != NULL)
         {
             curr = curr->next;
-            cout << curr->value;
+            cout << curr->coef << ' ' << curr->expn;
             cout << ' ';
         }
         cout << endl;
@@ -101,5 +147,25 @@ public:
 };
 int main()
 {
-    
+    struct LNode a1;
+    a1.c = 3;
+    a1.e = 14;
+    struct LNode a2;
+    a1.c = 3;
+    a1.e = 10;
+    struct LNode a3;
+    a1.c = 5;
+    a1.e = 8;
+    struct LNode a4;
+    a1.c = 0;
+    a1.e = 2;
+    struct LNode b1;
+    a1.c = 8;
+    a1.e = 14;
+    struct LNode b2;
+    a1.c = -3;
+    a1.e = 10;
+    struct LNode b3;
+    a1.c = 10;
+    a1.e = 6;
 }
